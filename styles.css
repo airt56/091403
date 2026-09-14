@@ -1,0 +1,109 @@
+:root {
+  color-scheme: light;
+  --background: #fdfbf8;
+  --ink: #202630;
+  --muted: #92969f;
+  --line: #e6e7eb;
+  --blue: #1681ff;
+  --blue-light: #d2e5ff;
+  --utility: #e8e9ee;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background: var(--background);
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 280px; }
+.shell {
+  width: min(840px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 66px 0 40px;
+}
+.calculator {
+  padding: 28px 30px 34px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 22px;
+  box-shadow: 0 6px 22px #32291c0a, 0 1px 5px #32291c04;
+}
+header { text-align: center; margin-bottom: 19px; }
+h1 { margin: 0 0 8px; font-size: 44px; line-height: 1.35; font-weight: 700; }
+header p { margin: 0; color: var(--muted); font-size: 24px; line-height: 1.5; }
+.display {
+  min-width: 0;
+  height: 176px;
+  padding: 22px 24px;
+  margin-bottom: 22px;
+  text-align: right;
+  background: #f6f7f9;
+  border: 1.5px solid #dfe1e7;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.expression { min-height: 34px; font-size: 28px; color: #898d96; line-height: 34px; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+output { display: block; margin-top: 8px; font-size: 80px; line-height: 1.1; font-weight: 600; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+output.long { font-size: 54px; letter-spacing: -1px; }
+output.error { font-size: 38px; letter-spacing: 0; color: #b13f3f; padding-top: 12px; }
+.keypad { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 16px; }
+button {
+  appearance: none;
+  min-width: 0;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1.5px solid var(--line);
+  background: #f9fafb;
+  color: var(--ink);
+  font: 600 40px/1 Arial, "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 120ms, transform 100ms, box-shadow 120ms;
+}
+button.utility { background: var(--utility); border-color: transparent; font-size: 34px; }
+button.operator { background: var(--blue-light); border-color: transparent; color: #0860b9; font-size: 44px; }
+button.equals { background: var(--blue); border-color: transparent; color: white; }
+button:hover { filter: brightness(.97); }
+button:active, button.pressed { transform: scale(.96); filter: brightness(.92); }
+button:focus-visible { outline: 3px solid #0860b9; outline-offset: 3px; }
+button.operator[aria-pressed="true"] { box-shadow: inset 0 0 0 2px #77b3f9; }
+button svg { width: 44px; height: 38px; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.keyboard-hint { text-align: center; color: #858a94; margin: 26px 0 0; font-size: 18px; line-height: 1.5; }
+.keyboard-hint span { padding: 0 12px; }
+@media (max-height: 950px) and (min-width: 601px) {
+  .shell { width: min(600px, calc(100% - 40px)); padding-top: 28px; padding-bottom: 24px; }
+  .calculator { padding: 22px; }
+  h1 { font-size: 32px; }
+  header p { font-size: 18px; }
+  header { margin-bottom: 20px; }
+  .display { height: 132px; padding: 15px 20px; margin-bottom: 16px; }
+  .expression { font-size: 21px; line-height: 28px; min-height: 28px; }
+  output { font-size: 60px; }
+  output.long { font-size: 40px; }
+  button { height: 66px; font-size: 30px; border-radius: 12px; }
+  button.utility { font-size: 26px; }
+  button.operator { font-size: 34px; }
+  .keypad { gap: 10px; }
+  .keyboard-hint { font-size: 14px; margin-top: 20px; }
+}
+@media (max-width: 600px) {
+  .shell { width: min(440px, calc(100% - 28px)); padding: 28px 0; }
+  .calculator { padding: 22px 16px; border-radius: 20px; }
+  h1 { font-size: 30px; }
+  header p { font-size: 16px; }
+  header { margin-bottom: 22px; }
+  .display { height: 134px; padding: 18px 14px; margin-bottom: 18px; border-radius: 12px; }
+  .expression { font-size: 19px; min-height: 28px; line-height: 28px; }
+  output { font-size: 58px; letter-spacing: -1px; }
+  output.long { font-size: clamp(22px, 7.4vw, 34px); letter-spacing: -1px; }
+  output.error { font-size: 26px; }
+  .keypad { gap: 10px; }
+  button { height: clamp(54px, 16vw, 72px); font-size: 28px; border-radius: 12px; }
+  button.utility { font-size: 24px; }
+  button.operator { font-size: 32px; }
+  button svg { width: 30px; height: 26px; }
+  .keyboard-hint { font-size: 12px; margin-top: 20px; }
+  .keyboard-hint span { padding: 0 4px; }
+}
+@media (prefers-reduced-motion: reduce) { button { transition: none; } }

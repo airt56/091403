@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fdfbf8">
+  <title>计算器 · 简单计算，轻松完成</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="calculator.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <section class="calculator" aria-labelledby="heading">
+      <header>
+        <h1 id="heading">计算器</h1>
+        <p>简单计算，轻松完成</p>
+      </header>
+      <div class="display" role="status" aria-live="polite" aria-atomic="true">
+        <div id="expression" class="expression" aria-label="算式">&nbsp;</div>
+        <output id="result" aria-label="计算结果">0</output>
+      </div>
+      <div class="keypad" aria-label="计算器按键">
+        <button class="utility" data-key="AC" aria-label="清空">AC</button>
+        <button class="utility" data-key="sign" aria-label="正负切换">+/−</button>
+        <button class="utility" data-key="%" aria-label="百分比">%</button>
+        <button class="operator" data-key="/" aria-label="除">÷</button>
+        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+        <button class="operator" data-key="*" aria-label="乘">×</button>
+        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+        <button class="operator" data-key="-" aria-label="减">−</button>
+        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+        <button class="operator" data-key="+" aria-label="加">+</button>
+        <button data-key="0">0</button><button data-key="." aria-label="小数点">.</button>
+        <button class="utility" data-key="back" aria-label="退格">
+          <svg viewBox="0 0 32 28" fill="none" aria-hidden="true"><path d="M12 4h15a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H12L2 14 12 4Z"/><path d="m16 10 8 8m0-8-8 8"/></svg>
+        </button>
+        <button class="equals" data-key="=" aria-label="等于">=</button>
+      </div>
+    </section>
+    <p class="keyboard-hint">支持键盘输入 <span>·</span> Enter 计算 <span>·</span> Esc 清空</p>
+  </main>
+</body>
+</html>

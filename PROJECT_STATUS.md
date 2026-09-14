@@ -61,6 +61,10 @@
 | `calculator-mobile.png` | 手机尺寸实际截图，390 × 844 |
 | `calculator-dark-en-desktop.png` | 黑色英文桌面截图，1448 × 1086 |
 | `calculator-dark-en-mobile.png` | 黑色英文手机截图，390 × 844 |
+| `calculator-dark-zh-desktop.png` | 黑色中文桌面截图，1448 × 1086 |
+| `calculator-dark-zh-mobile.png` | 黑色中文手机截图，390 × 844 |
+| `calculator-light-en-desktop.png` | 白色英文桌面截图，1448 × 1086 |
+| `calculator-light-en-mobile.png` | 白色英文手机截图，390 × 844 |
 | `README.md` | 使用说明 |
 | `DESIGN.md` | 设计、实施计划与验证记录 |
 | `PROJECT_STATUS.md` | 项目状态与交接信息 |
@@ -92,6 +96,8 @@ node browser-qa.cjs
 浏览器脚本目前使用固定 Chrome 路径 `C:/Program Files/Google/Chrome/Application/chrome.exe`。换电脑时可能需要调整；运行会创建 `.browser-qa` 临时配置目录。
 
 ## 剩余事项
+
+截图与文档补全：已保存四种语言／主题组合的桌面和手机截图，共八张实际截图，并在 README 中按语言和主题并排展示。浏览器脚本可重现完整截图集；本次重新运行浏览器检查通过，计算核心未改动。
 
 - 原定基础功能范围内无待完成事项，当前没有已知阻塞。
 - 尚未验证其他浏览器及手机真机。

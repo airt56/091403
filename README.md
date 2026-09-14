@@ -54,11 +54,33 @@
 
 ## 界面预览
 
-[原始 UI 效果图](calculator-ui-preview.png) · [桌面实际截图](calculator-desktop.png) · [手机尺寸截图](calculator-mobile.png)
+以下均为当前页面的真实浏览器截图，覆盖 **2 种语言 × 2 种主题**。每组使用相同的 `128 × 6 = 768` 算例，便于比较；顶部主题按钮显示的是切换目标，例如黑色界面中的“白色 / Light”。点击图片可查看原图。
 
-[黑色英文桌面截图](calculator-dark-en-desktop.png) · [黑色英文手机截图](calculator-dark-en-mobile.png)
+### 桌面预览
 
-![计算器桌面界面](calculator-desktop.png)
+视口尺寸：1448 × 1086。
+
+| 中文 · 白色主题 | 中文 · 黑色主题 |
+| --- | --- |
+| [![中文白色主题桌面界面](calculator-desktop.png)](calculator-desktop.png) | [![中文黑色主题桌面界面](calculator-dark-zh-desktop.png)](calculator-dark-zh-desktop.png) |
+
+| English · Light | English · Dark |
+| --- | --- |
+| [![英文白色主题桌面界面](calculator-light-en-desktop.png)](calculator-light-en-desktop.png) | [![英文黑色主题桌面界面](calculator-dark-en-desktop.png)](calculator-dark-en-desktop.png) |
+
+### 手机尺寸预览
+
+视口尺寸：390 × 844，为浏览器模拟手机尺寸截图。
+
+| 中文 · 白色主题 | 中文 · 黑色主题 |
+| --- | --- |
+| [![中文白色主题手机界面](calculator-mobile.png)](calculator-mobile.png) | [![中文黑色主题手机界面](calculator-dark-zh-mobile.png)](calculator-dark-zh-mobile.png) |
+
+| English · Light | English · Dark |
+| --- | --- |
+| [![英文白色主题手机界面](calculator-light-en-mobile.png)](calculator-light-en-mobile.png) | [![英文黑色主题手机界面](calculator-dark-en-mobile.png)](calculator-dark-en-mobile.png) |
+
+原始设计参考保存在 [UI 效果图](calculator-ui-preview.png) 中，实际功能与当前界面以上述截图为准。
 
 ## 项目文件
 
@@ -76,6 +98,10 @@
 | [calculator-mobile.png](calculator-mobile.png) | 手机尺寸实际截图，390 × 844 |
 | [calculator-dark-en-desktop.png](calculator-dark-en-desktop.png) | 黑色英文桌面截图 |
 | [calculator-dark-en-mobile.png](calculator-dark-en-mobile.png) | 黑色英文手机截图 |
+| [calculator-dark-zh-desktop.png](calculator-dark-zh-desktop.png) | 黑色中文桌面截图 |
+| [calculator-dark-zh-mobile.png](calculator-dark-zh-mobile.png) | 黑色中文手机截图 |
+| [calculator-light-en-desktop.png](calculator-light-en-desktop.png) | 白色英文桌面截图 |
+| [calculator-light-en-mobile.png](calculator-light-en-mobile.png) | 白色英文手机截图 |
 | [DESIGN.md](DESIGN.md) | 设计、实施及视觉验证记录 |
 | [PROJECT_STATUS.md](PROJECT_STATUS.md) | 当前状态、验证结果与交接信息 |
 
@@ -95,7 +121,7 @@ node --test --test-isolation=none calculator.test.cjs
 node browser-qa.cjs
 ```
 
-浏览器脚本使用本机 Chrome 的无界面模式及 DevTools 协议，默认程序路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`。若安装位置不同，请修改脚本中的路径。脚本会创建 `.browser-qa` 临时配置目录，并更新四张实际截图。测试会在独立测试配置中重置主题和语言偏好。
+浏览器脚本使用本机 Chrome 的无界面模式及 DevTools 协议，默认程序路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`。若安装位置不同，请修改脚本中的路径。脚本会创建 `.browser-qa` 临时配置目录，并更新上述八张实际截图，覆盖中英语言、黑白主题和桌面／手机尺寸。测试会在独立测试配置中重置主题和语言偏好。
 
 最近一次功能更新验证结果（2026-09-14）：
 
@@ -104,6 +130,7 @@ node browser-qa.cjs
 - 已检查 1448 × 1086 桌面视口和 390 × 844 手机模拟视口；手机横向溢出及长数字显示检查通过。
 - 测试期间未捕获 JavaScript 异常或 `console.error`。
 - 黑白主题、中英标题及错误消息切换、刷新恢复偏好、切换中保留运算内容，以及设置按钮的键盘操作通过检查。
+- 本次截图补全已重新运行浏览器检查：四种语言／主题组合均保持算例结果 `768`，新增手机尺寸截图无横向溢出。核心运算代码未改动，23 项核心检查沿用上次功能更新记录。
 
 其他浏览器和手机真机尚未验证。
 

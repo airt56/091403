@@ -107,6 +107,22 @@ const assert = require('node:assert/strict');
     await screenshot('calculator-dark-en-mobile.png');
     await send('Emulation.setDeviceMetricsOverride', { width: 1448, height: 1086, deviceScaleFactor: 1, mobile: false });
     await screenshot('calculator-dark-en-desktop.png');
+    // Complete the README gallery using the actual UI switches.
+    const captureVariant = async (name, expectedTheme, expectedLanguage) => {
+      await check('document.documentElement.dataset.theme', expectedTheme);
+      await check('document.documentElement.lang', expectedLanguage);
+      await check('document.querySelector("#result").textContent', '768');
+      await screenshot(`calculator-${name}-desktop.png`);
+      await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+      await check('document.documentElement.scrollWidth <= innerWidth', true);
+      await screenshot(`calculator-${name}-mobile.png`);
+      await send('Emulation.setDeviceMetricsOverride', { width: 1448, height: 1086, deviceScaleFactor: 1, mobile: false });
+    };
+    await evaluate('document.querySelector("#language-toggle").click()');
+    await captureVariant('dark-zh', 'dark', 'zh-CN');
+    await evaluate('document.querySelector("#theme-toggle").click(); document.querySelector("#language-toggle").click()');
+    await captureVariant('light-en', 'light', 'en');
+    await evaluate('document.querySelector("#theme-toggle").click()');
     await evaluate('document.querySelector("#result").dataset.beforeReload = "yes"');
     await send('Page.reload');
     for (let i = 0; ; i++) {
@@ -127,7 +143,7 @@ const assert = require('node:assert/strict');
     await check('document.querySelector("#result").textContent', '0');
     await evaluate('localStorage.removeItem("calculator.theme"); localStorage.removeItem("calculator.language")');
     assert.deepEqual(errors, []);
-    console.log('PASS: core calculator flows; light/dark theme; Chinese/English labels and errors; calculation preserved during toggles; preferences survive reload; Enter activates focused toggles; mobile long numbers and errors fit; zero runtime errors. Four screenshots: light Chinese and dark English, desktop and mobile.');
+    console.log('PASS: core calculator flows; light/dark theme; Chinese/English labels and errors; calculation preserved during toggles; preferences survive reload; Enter activates focused toggles; mobile long numbers and errors fit; zero runtime errors. Eight screenshots: all four language/theme combinations, desktop and mobile.');
     await send('Browser.close');
   } finally {
     if (socket) socket.close();

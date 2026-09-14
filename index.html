@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#fdfbf8">
   <title>计算器 · 简单计算，轻松完成</title>
   <link rel="icon" href="data:,">
+  <script src="preferences.js"></script>
   <link rel="stylesheet" href="styles.css">
   <script src="calculator.js" defer></script>
   <script src="app.js" defer></script>
@@ -13,9 +14,15 @@
 <body>
   <main class="shell">
     <section class="calculator" aria-labelledby="heading">
+      <div class="preferences" role="group" aria-label="界面设置">
+        <button id="theme-toggle" type="button" aria-label="切换到黑色主题" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true">◐</span><span id="theme-label">黑色</span>
+        </button>
+        <button id="language-toggle" type="button" aria-label="Switch to English">English</button>
+      </div>
       <header>
         <h1 id="heading">计算器</h1>
-        <p>简单计算，轻松完成</p>
+        <p id="subtitle">简单计算，轻松完成</p>
       </header>
       <div class="display" role="status" aria-live="polite" aria-atomic="true">
         <div id="expression" class="expression" aria-label="算式">&nbsp;</div>

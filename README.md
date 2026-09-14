@@ -8,7 +8,7 @@
 
 双击当前文件夹中的 [index.html](index.html)，使用浏览器打开即可，**无需安装、联网或启动服务**。
 
-请将 `index.html`、`styles.css`、`calculator.js` 和 `app.js` 保持在同一个文件夹。日常使用不需要 Node.js；运行测试时才需要。
+请将 `index.html`、`styles.css`、`preferences.js`、`calculator.js` 和 `app.js` 保持在同一个文件夹。日常使用不需要 Node.js；运行测试时才需要。
 
 ## 功能
 
@@ -17,6 +17,16 @@
 - 除零及结果溢出提示，输入数字后恢复计算。
 - 键盘输入、按钮焦点提示及按下反馈。
 - 浅色卡片、四列五行按键及响应式布局。
+- 黑色／白色主题切换，中文／English 语言切换。
+
+## 主题与语言
+
+使用计算器顶部的两个按钮切换：
+
+- **黑色／白色**（英文为 Dark／Light）：按钮显示可切换到的主题，原有蓝色运算强调色保留。
+- **English／中文**：切换标题、说明、键盘提示、错误消息及无障碍标签。
+
+切换不会清空当前数字或算式。主题和语言保存在当前浏览器的本地存储中，刷新后自动恢复；首次打开默认白色主题、中文。若浏览器禁用本地存储，切换仍然可用，但关闭或刷新页面后可能不保留选择。计算内容不随设置保存。
 
 ## 键盘操作
 
@@ -46,6 +56,8 @@
 
 [原始 UI 效果图](calculator-ui-preview.png) · [桌面实际截图](calculator-desktop.png) · [手机尺寸截图](calculator-mobile.png)
 
+[黑色英文桌面截图](calculator-dark-en-desktop.png) · [黑色英文手机截图](calculator-dark-en-mobile.png)
+
 ![计算器桌面界面](calculator-desktop.png)
 
 ## 项目文件
@@ -56,11 +68,14 @@
 | [styles.css](styles.css) | 样式、交互反馈与响应式布局 |
 | [calculator.js](calculator.js) | 计算逻辑与状态管理 |
 | [app.js](app.js) | 显示更新、鼠标及键盘事件 |
+| [preferences.js](preferences.js) | 主题、语言的启动读取及本地保存 |
 | [calculator.test.cjs](calculator.test.cjs) | 核心运算检查 |
 | [browser-qa.cjs](browser-qa.cjs) | 本机 Chrome 浏览器验证脚本 |
 | [calculator-ui-preview.png](calculator-ui-preview.png) | 原始 UI 效果图 |
 | [calculator-desktop.png](calculator-desktop.png) | 桌面实际截图，1448 × 1086 |
 | [calculator-mobile.png](calculator-mobile.png) | 手机尺寸实际截图，390 × 844 |
+| [calculator-dark-en-desktop.png](calculator-dark-en-desktop.png) | 黑色英文桌面截图 |
+| [calculator-dark-en-mobile.png](calculator-dark-en-mobile.png) | 黑色英文手机截图 |
 | [DESIGN.md](DESIGN.md) | 设计、实施及视觉验证记录 |
 | [PROJECT_STATUS.md](PROJECT_STATUS.md) | 当前状态、验证结果与交接信息 |
 
@@ -80,16 +95,17 @@ node --test --test-isolation=none calculator.test.cjs
 node browser-qa.cjs
 ```
 
-浏览器脚本使用本机 Chrome 的无界面模式及 DevTools 协议，默认程序路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`。若安装位置不同，请修改脚本中的路径。脚本会创建 `.browser-qa` 临时配置目录，并更新两张实际截图。
+浏览器脚本使用本机 Chrome 的无界面模式及 DevTools 协议，默认程序路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`。若安装位置不同，请修改脚本中的路径。脚本会创建 `.browser-qa` 临时配置目录，并更新四张实际截图。测试会在独立测试配置中重置主题和语言偏好。
 
-最近一次实现阶段验证结果（2026-09-14）：
+最近一次功能更新验证结果（2026-09-14）：
 
 - 23 项核心检查通过，0 项失败。
 - Chrome 页面加载、20 个按键、鼠标乘法、键盘小数运算、退格及除零恢复检查通过。
 - 已检查 1448 × 1086 桌面视口和 390 × 844 手机模拟视口；手机横向溢出及长数字显示检查通过。
 - 测试期间未捕获 JavaScript 异常或 `console.error`。
+- 黑白主题、中英标题及错误消息切换、刷新恢复偏好、切换中保留运算内容，以及设置按钮的键盘操作通过检查。
 
-其他浏览器和手机真机尚未验证。本次 README 更新仅修改文档，未重新运行上述测试。
+其他浏览器和手机真机尚未验证。
 
 ## Git 状态
 
